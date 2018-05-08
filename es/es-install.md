@@ -9,7 +9,7 @@ elasticsearch简称es
 #### 安装
 
 首先安装java
-`sudo apt-get install java`
+`sudo apt-get install openjdk-8-jdk`
 
 下载 [es-deb](https://www.elastic.co/downloads/elasticsearch)
 安装 `sudo dpkg -i elasticsearch-6.2.3.deb`
@@ -113,4 +113,4 @@ git checkout v6.2.3 #es是6.2.3，kibana就切换到 v6.2.3
 
 参考:
 
-https://github.com/elastic/kibana/blob/master/CONTRIBUTING.md#setting-up-your-development-environment 
+https://github.com/elastic/kibana/blob/master/CONTRIBUTING.md#setting-up-your-development-environment

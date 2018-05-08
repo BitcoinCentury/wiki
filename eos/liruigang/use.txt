@@ -1,0 +1,101 @@
+
+钱包创建
+
+./cleos wallet create
+	Creating wallet: default
+	Save password to use in the future to unlock this wallet.
+	Without password imported keys will not be retrievable.
+	"PW5Je8DVgPd8L5cZyyMSuEMzTVv1z4iif4gEXZmYknHBvmifDZ2W9"
+
+
+./cleos wallet create -n user1
+	Creating wallet: user1
+	Save password to use in the future to unlock this wallet.
+	Without password imported keys will not be retrievable.
+	"PW5KCF3MtchPmrpHc3Z4s8Sk4MC76ExNyr65FrEu9Rx4BReEubiXV"
+
+./cleos wallet list
+	Wallets:
+	[
+	  "default *",
+	  "user1 *"
+	]
+
+	*代表已经解锁
+
+
+
+
+
+
+配置单单机双节点
+
+1. 启动钱包管理器
+	./keosd --http-server-address 127.0.0.1:8899
+
+
+2. 创建默认钱包
+	./cleos --wallet-port 8899 wallet create
+	Creating wallet: default
+	Save password to use in the future to unlock this wallet.
+	Without password imported keys will not be retrievable.
+	"PW5JKmjCoWBmzVATBpqNtDJfCeAJf2umkzwRCzkkyK5fJ7rQAwNhX"
+
+
+3. 启动第一个节点
+	./nodeos --enable-stale-production --producer-name eosio --plugin eosio::chain_api_plugin --plugin eosio::net_api_plugin
+	现在这个节点自动出块
+
+
+
+4. 启动第二个生产者节点
+
+4.1 加载eosio.bios合约
+	./cleos --wallet-port 8899 set contract eosio ../../contracts/eosio.bios
+	这个合约使能账户资源分配控制权和一些api调用的访问权。
+
+
+4.2 创建生产者inita
+
+4.2.1 先为inita创建公私钥
+	./cleos create key
+	Private key: 5JjHTfZmDDAsXwDbnAHeRYJRzsTCmZBrpaQWzWpwKpVzDpuuRzp
+	Public key: EOS5AAnSmTMcsceC9PLvNdQcrs9TfaVEreKAnUpvprxEVksL9RDaH
+
+
+4.2.2 私钥导入钱包
+	./cleos --wallet-port 8899 wallet import 5JjHTfZmDDAsXwDbnAHeRYJRzsTCmZBrpaQWzWpwKpVzDpuuRzp
+
+4.2.3 创建生产者inita
+	./cleos --wallet-port 8899 create account eosio inita EOS5AAnSmTMcsceC9PLvNdQcrs9TfaVEreKAnUpvprxEVksL9RDaH EOS5AAnSmTMcsceC9PLvNdQcrs9TfaVEreKAnUpvprxEVksL9RDaH
+	此处公钥使用了两次，第一次作为inita的自己key，第二次是作为生产者的活动key。
+	生产者使很牛逼的，它能创建简单的智能合约。
+
+
+4.3 启动第二节点
+	./nodeos --producer-name inita --plugin eosio::chain_api_plugin --plugin eosio::net_api_plugin --http-server-address 127.0.0.1:8889 --p2p-listen-endpoint 127.0.0.1:9877 --p2p-peer-address 127.0.0.1:9876 --config-dir node2 --data-dir node2 --private-key [\"EOS5AAnSmTMcsceC9PLvNdQcrs9TfaVEreKAnUpvprxEVksL9RDaH\",\"5JjHTfZmDDAsXwDbnAHeRYJRzsTCmZBrpaQWzWpwKpVzDpuuRzp\"]
+	第二节点用的使8889, 不要与钱包deamon的8899混淆。
+
+
+4.4 将inita状态从idle转为active
+	./cleos --wallet-port 8899 push action eosio setprods "{ \"version\": 1, \"producers\": [{\"producer_name\": \"inita\",\"block_signing_key\": \"EOS5AAnSmTMcsceC9PLvNdQcrs9TfaVEreKAnUpvprxEVksL9RDaH\"}]}" -p eosio@active
+
+
+
+4.5 后记
+	此时第一个节点已经不再出块，而是由第二个生产者inita来出块。
+	./cleos get info	#查看第一个节点
+	./cleos --port 8889 get info	#查看第二节点
+
+
+
+
+4.6 第二遍启动双节点
+	主要是在运行第二节点时加入参数 --enable-stale-production
+
+	#总体思想，不需要再创建wallet和key。只需要钱包解锁，然后启动第二节点即可（假如第一节点已经运行的情况下）
+	#1) 启动第一节点
+	#2) 启动第二节点keosd
+	#3) unlock第二节点		注意，钱包unlock的密码不要与生产者inita的私钥搞混
+	#4) 启动第二节点
+

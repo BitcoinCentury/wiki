@@ -1,0 +1,63 @@
+EOS.IO Scholar测试网络 (Chinese)
+
+https://github.com/ScholarTestnet
+https://testnet.eosocal.io/v1/chain/get_info
+
+
+
+cleos create key
+Private key: 5KUR8Bs1BteMTiFxAQmQeBrKxxe5ucFmNhFZNVk97hr4EasSZsQ
+Public key: EOS5vw39ZYWcg9Y5EB2rQGVsu3CNLA1PPuvP92ZrrLmcqVQVfwbVQ
+
+
+cleos create key
+Private key: 5Jz2X147WwutQH4atpdGmRTwRSgRFpESTtqZMXENTfQfr6cRXwG
+Public key: EOS5qh5zU7RxHtjzZe9zCCocGAwADYSnVZ4HtuCcF1rQLCRgAeB81
+
+
+
+ ./eosc set account permission 帐户名 权限 JSON 授权者 
+
+./eosc set account permission lome4 active '{"threshold": 1, "keys": [{"key": "EOS6ePVMSdSkGn4wDMqcCSTSN3GnRgEPxDPEioQQXUkfYxT8jrudg", "weight": 1}], "accounts": [{"permission":{"account":"lome5","permission":"active"},"weight": 1}]}' owner 
+
+owner账户给lome4账户授予active权限，具体的权限内容是json的内容。
+要求lome4这个账户有keys个公钥
+要求lome4这个账户有accounts个子账户，这里只有1个子账户lome5，这个账户具有active权限。
+
+{
+    "threshold":1,
+    "keys":[
+        {
+            "key":"EOS6ePVMSdSkGn4wDMqcCSTSN3GnRgEPxDPEioQQXUkfYxT8jrudg",
+            "weight":1
+        }
+    ],
+    "accounts":[
+        {
+            "permission":{
+                "account":"lome5",
+                "permission":"active"
+            },
+            "weight":1
+        }
+    ]
+}
+
+
+# threshold权限阀值，权限等于阀值才能获取该权限，否则授权失败
+# keys 是该权限已授权的密匙 ： 
+	keys中的key为授权的密匙对的公匙，
+	weight 为授权密匙对的权重
+	ps： 若阀值是2，权重是1，是不能够完成授权的，操作将失败
+
+# accounts 是该权限已授权的帐户： 
+	permission是被授权用户的权限，这里指的就是lome5的active权限 weight指的也是权重。
+	ps：重要：授权用户权限其实跟授权key是一个道理，其实授权帐户权限，实质上就是授权该权限的密匙对权限。
+
+# 最后owner是权限，只有owner权限才能改变用户的权限 
+
+
+
+
+
+

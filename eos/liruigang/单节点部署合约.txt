@@ -1,0 +1,113 @@
+# 创建default钱包
+~> cleos wallet create
+Creating wallet: default 
+Save password to use in the future to unlock this wallet.
+Without password imported keys will not be retrievable.
+"PW5JKqWcAYQ6tNgKN1zrq4cSrQNivdWbVC6gzMDgh95ZXXrAmaUKv"
+
+#创建
+~> cleos set contract eosio eosio.bios -p eosio
+Reading WAST/WASM from eosio.bios/eosio.bios.wast...
+Assembling WASM...
+Publishing contract...
+executed transaction: 26762b87fff310d47f18fb00c16be7704d20f9849d11a4edcb27fb3b4e446aa7  3288 bytes  2200576 cycles
+#         eosio <= eosio::setcode               {"account":"eosio","vmtype":0,"vmversion":0,"code":"0061736d0100000001581060037f7e7f0060057f7e7e7e7e...
+#         eosio <= eosio::setabi                {"account":"eosio","abi":{"types":[],"structs":[{"name":"set_account_limits","base":"","fields":[{"n...
+
+
+
+#获取最顶层账户eosio的账户信息
+~> cleos get account eosio
+{
+  "account_name": "eosio",
+  "permissions": [{
+      "perm_name": "active",
+      "parent": "owner",
+      "required_auth": {
+        "threshold": 1,
+        "keys": [{
+            "key": "EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV",
+            "weight": 1
+          }
+        ],
+        "accounts": []
+      }
+    },{
+      "perm_name": "owner",
+      "parent": "",
+      "required_auth": {
+        "threshold": 1,
+        "keys": [{
+            "key": "EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV",
+            "weight": 1
+          }
+        ],
+        "accounts": []
+      }
+    }
+  ]
+}
+
+#account_name 账户名称，eosio账户是~/.local/share/eosio/nodeos/config/config.ini文件中的 producer-name = eosio 进行配置的。
+#permissions 账户所带权限，这个账户中有两个权限owner和active。
+	perm_name 权限名称
+	parent 父权限，这里可以看到owner是active的父权限
+	required_auth 请求授权，即在做授权操作时的条件，比如在做owner授权时，要求的最低的owner的最低条件
+		threshold 行使权限时要求的最低阀值
+		keys 某个权限对应的各个公钥，及其对应的权重。
+			eosio这个账户的各个权限key是在 ~/.local/share/eosio/nodeos/config/genesis.json 文件中的 "initial_key": "EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV“ 进行配置的。
+		accounts 创建当前账户的某个权限的子账户列表
+
+
+#分别创建key
+~> cleos create key
+Private key: 5KUR8Bs1BteMTiFxAQmQeBrKxxe5ucFmNhFZNVk97hr4EasSZsQ
+Public key: EOS5vw39ZYWcg9Y5EB2rQGVsu3CNLA1PPuvP92ZrrLmcqVQVfwbVQ
+
+~> cleos create key
+Private key: 5Jz2X147WwutQH4atpdGmRTwRSgRFpESTtqZMXENTfQfr6cRXwG
+Public key: EOS5qh5zU7RxHtjzZe9zCCocGAwADYSnVZ4HtuCcF1rQLCRgAeB81
+
+#导入key
+~> cleos wallet import 5KUR8Bs1BteMTiFxAQmQeBrKxxe5ucFmNhFZNVk97hr4EasSZsQ
+imported private key for: EOS5vw39ZYWcg9Y5EB2rQGVsu3CNLA1PPuvP92ZrrLmcqVQVfwbVQ
+
+~> cleos wallet import 5Jz2X147WwutQH4atpdGmRTwRSgRFpESTtqZMXENTfQfr6cRXwG
+imported private key for: EOS5qh5zU7RxHtjzZe9zCCocGAwADYSnVZ4HtuCcF1rQLCRgAeB81
+
+#创建子账户
+~> cleos create account eosio user1 EOS5vw39ZYWcg9Y5EB2rQGVsu3CNLA1PPuvP92ZrrLmcqVQVfwbVQ EOS5qh5zU7RxHtjzZe9zCCocGAwADYSnVZ4HtuCcF1rQLCRgAeB81
+ #没上链之前，创建的多个账户，都可以使用同样的公钥
+  cleos create account eosio user2 EOS5vw39ZYWcg9Y5EB2rQGVsu3CNLA1PPuvP92ZrrLmcqVQVfwbVQ EOS5qh5zU7RxHtjzZe9zCCocGAwADYSnVZ4HtuCcF1rQLCRgAeB81
+  cleos create account eosio user3 EOS5vw39ZYWcg9Y5EB2rQGVsu3CNLA1PPuvP92ZrrLmcqVQVfwbVQ EOS5qh5zU7RxHtjzZe9zCCocGAwADYSnVZ4HtuCcF1rQLCRgAeB81
+  ...
+
+  为啥同一个钱包里，可以有多个账户使用相同的公钥呢
+~> cleos get accounts EOS5vw39ZYWcg9Y5EB2rQGVsu3CNLA1PPuvP92ZrrLmcqVQVfwbVQ
+{
+  "account_names": [
+    "user1",
+    "user2",
+    "user3"
+  ]
+}
+
+
+#查看账户
+~> cleos get account user1
+
+#查看是否已经上链
+~> cleos get code user1
+code hash: 0000000000000000000000000000000000000000000000000000000000000000
+
+cleos  set contract  -j currency . currency.wast currency.abi
+
+cleos push action currency create '{"issuer":"currency","maximum_supply":"1000000.0000 CUR","can_freeze":"0","can_recall":"0","can_whitelist":"0"}' --permission currency@active
+
+cleos push action currency issue '{"to":"currency","quantity":"1000.0000 CUR","memo":""}' --permission currency@active
+
+cleos get table currency currency accounts
+
+cleos push action currency transfer '{"from":"currency","to":"eosio","quantity":"20.0000 CUR","memo":"my first transfer"}' --permission currency@active
+
+cleos get table currency eosio accounts

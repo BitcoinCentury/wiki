@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html style="font-size: 100px;"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>EOS创世节点选举流程</title>
+
+<meta name="keywords" content="EOS，节点选举"><meta name="description" content="						正如我们之前所言，EOS官方到现在为止还没有正式公布 EOS 超级节点选举如何进行投票，这让很多人"><meta name="renderer" content="webkit"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta name="baidu-site-verification" content="7qZEDVLTG2"><link rel="shortcut icon" href="http://block001.cn/images/block_favicon.png" type="image/png"><link rel="stylesheet" type="text/css" href="EOS%E5%88%9B%E4%B8%96%E8%8A%82%E7%82%B9%E9%80%89%E4%B8%BE%E6%B5%81%E7%A8%8B_files/reset.css"><link rel="stylesheet" type="text/css" href="EOS%E5%88%9B%E4%B8%96%E8%8A%82%E7%82%B9%E9%80%89%E4%B8%BE%E6%B5%81%E7%A8%8B_files/iconfont.css"><link rel="stylesheet" type="text/css" href="EOS%E5%88%9B%E4%B8%96%E8%8A%82%E7%82%B9%E9%80%89%E4%B8%BE%E6%B5%81%E7%A8%8B_files/common.css">
+
+
+ <link rel="stylesheet" type="text/css" href="EOS%E5%88%9B%E4%B8%96%E8%8A%82%E7%82%B9%E9%80%89%E4%B8%BE%E6%B5%81%E7%A8%8B_files/style2.css"> 
+ <link rel="stylesheet" type="text/css" href="EOS%E5%88%9B%E4%B8%96%E8%8A%82%E7%82%B9%E9%80%89%E4%B8%BE%E6%B5%81%E7%A8%8B_files/news_detail.css"> 
+ <style type="text/css">
+ 	.article_wrap .body p{margin-bottom: 15px;}
+ </style>
+
+
+  <script src="EOS%E5%88%9B%E4%B8%96%E8%8A%82%E7%82%B9%E9%80%89%E4%B8%BE%E6%B5%81%E7%A8%8B_files/hm.js"></script><script src="EOS%E5%88%9B%E4%B8%96%E8%8A%82%E7%82%B9%E9%80%89%E4%B8%BE%E6%B5%81%E7%A8%8B_files/push.js"></script><script type="text/javascript">
+    !function(){
+        var htmlEl = document.getElementsByTagName('html')[0];
+        var fitPage = function(){
+              /* The calculate of with from zepto  */
+         var w = htmlEl.getBoundingClientRect().width;
+         w = Math.round(w);
+         w = w > 750 ? 750: w;
+         var newW = w/750 * 100;    
+         htmlEl.style.fontSize = newW + 'px';
+        }
+        fitPage();
+    
+        var t;
+        var func = function(){
+         clearTimeout(t);
+         t = setTimeout(fitPage, 25);
+        }
+        window.addEventListener('resize', func);
+    }(); 
+    window.module_name='blockchain';      
+  </script>
+
+
+</head>
+
+<!-- search_page-star -->
+ <body>
+
+
+
+
+ 
+ 
+
+
+ 
+ 
+<div class="page_body clearfix">
+   <div class="main_wrapper clearfix">
+		<div class="left_wrap fl">
+			<!-- 新闻详情-star -->
+			<div class="article_wrap">
+				 <input id="channelId" value="7" type="hidden">
+				 <input id="channelName" value="news" type="hidden">
+				 <div class="head">
+					 <div class="title">EOS创世节点选举流程终于曝光，居然没有中国什么事</div>
+					 
+				 </div>
+
+				 <div class="body"><section><br>						<p style="text-align: center;"><img src="EOS%E5%88%9B%E4%B8%96%E8%8A%82%E7%82%B9%E9%80%89%E4%B8%BE%E6%B5%81%E7%A8%8B_files/1524232478989.jpg" title="微信图片_20180420215538.jpg" alt="微信图片_20180420215538.jpg" data-src="http://p3oerr4g8.bkt.clouddn.com/image/dft-finance/news/imgs/1524232478989.jpg?imageView2/0/format/jpg/q/75"></p>
+				 <p style="text-align: center;"><em>正如我们之前所言，EOS官方到现在为止还没有正式公布 EOS 超级节点选举如何进行投票，这让很多人对这次投票一头雾水</em>。</p><p><br></p><p>我们在查阅了几乎所有的 EOS 社区文件之后，终于找到了关于超级节点、EOS 主网上线形式的讨论，他来自 BlockOne 公司的副总裁 Thomas Cox 在 Medium 上发布的一篇文章《很久以前：EOS 区块链的 BIOS 启动》。</p><p><br></p><p>今天本文又被 Thomas 发布在&nbsp;EOSGo 官方论坛，基本可以看作是最终版。</p><p>在这篇文章中，我们将带各位了解：</p>
+				 <p>	EOS 创世节点是怎么选出来的，EOS 创世区块是如何产生的，创世后的 21 个节点是如何产生的，EOS 
+主网是如何启动的，21 个超级节点是如何选举产生，超级节点如何替换创世节点，EOS&nbsp;宪法也需要投票，EOS 
+宪法投票最长要锁仓1个月，宪法替换之前的Token是无法交易等内容。</p>
+				 <p>我们已为各位准备了全部流程和配图，帮助各位了解这讲究的创世节点和主网上线。</p><p>最近，在 EOS 社群里大家围绕着「EOS 软件项目怎样开展」展开了热烈的讨论。本文将讨论中大家所达成的共识抽取出来，揭示 EOS 软件项目启动时需要经历哪些环节。</p><p>但请注意：本文接下来的内容，并不一定认为，同样也不会暗示，将来 EOS 系统会拥有哪些特定的功能。</p><p><br></p><p><span style="color: rgb(0, 112, 192); font-size: 20px;"><strong>阶段0：启动之前的工作</strong></span></p><p><br></p><p><img class="" src="EOS%E5%88%9B%E4%B8%96%E8%8A%82%E7%82%B9%E9%80%89%E4%B8%BE%E6%B5%81%E7%A8%8B_files/9c467a32a6cb45bea4620678345546ca.jpeg" style="height: auto !important; width: auto !important; visibility: visible !important;" data-src="http://p3oerr4g8.bkt.clouddn.com/image/dft-finance/id/9c467a32a6cb45bea4620678345546ca?imageView2/0/format/jpg/q/75"></p><p><br></p><p>1、在 EOS 主网上线之前，「超级节点社区」将从成员里面挑选一批志愿参与「上线候选池（Go-Live Pool）」的技术精英。这个上线候选池中应该有大概 50 人。</p><p>2、
+在上线之前，根据已有经验，这个候选池会用某种随机挑选技术*选出&nbsp;22 个人组建一个「上线小队」（Go-Live 
+team)。然后，他们开始建立高度加密互通的&nbsp;VPN 连接，以阻挡 DDOS 攻击及其他黑客攻击。接下来，这 22 
+个人会公布成员名单，但并不会在选出之后立刻公布。</p><p>3、EOS Token 的众筹活动截止在 2018 年的 6 月 2 日 
+22:00（世界标准时间 UTC），在这一刻，EOS 的 ERC-20 代币将被冻结。最后一刻会生成一个包含所有 EOS Token 
+数量的快照，包含 EOS Token 数量的 EOS 区块链网络将由此被创建。</p><p>4、 只要这个快照中的初始值被「上线小队」22 
+名成员中的 15 人确认&nbsp;(他们会发布关于数据的外部验证），他们再次用上面提到的随机挑选技术选择 22 人中的&nbsp;1 人作为 
+BIOS Boot 节点（*创世节点）。此人生成一个新的&nbsp;EOS 密钥对，这一密钥对将只能在 BIOS Boot 节点进程上使用。</p><p><br>
+				 </p>
+                 <p><span style="color: rgb(0, 112, 192); font-size: 20px;"><strong>阶段1：启动引导流程</strong></span></p>
+                 <p></p>
+                 <p>BIOS Boot 节点抓取包含 EOS Token 初始值的「创世区块」，然后开始 EOS 区块链的启动引导流程：<br>
+                 </p>
+                 <p>1. 建立 EOS 区块链上第一个全新的区块。</p><p>2. 利用一个 EOS 系统账户，安装核心运行协议，这个系统账户使用阶段 0 最后一步生成的、专门为 BIOS Boot 而准备的 EOS 密钥对。</p>
+                 <p>3. 在 EOS 区块链上安装 21 个「指定节点」（ABP，Appointed Blockchain Producer），这些节点将负责进行首次超级节点投票选举。这 21 个指定节点为「上线小队」中剩余的其他 21 个人（非21个超级节点）。</p>
+				 <p>4. BIOS Boot 节点将系统的算力分配给这 21 个指定节点，仅此而已。</p>
+				 <p>5. BIOS Boot 节点上的那位技术精英，将该节点在 EOS 区块链上的所有系统权限密钥移除。接下来，BIOS Boot 节点将发布自己刚才使用的 BIOS Boot 密钥（现在已无用），这样一来其他人都可以审核和重制他的工作。</p><p><br></p>
+				 <p><span style="color: rgb(0, 112, 192); font-size: 20px;"><strong>阶段2：指定节点工作</strong></span></p><p><br></p><p><img class="" src="EOS%E5%88%9B%E4%B8%96%E8%8A%82%E7%82%B9%E9%80%89%E4%B8%BE%E6%B5%81%E7%A8%8B_files/6abc7242b5014b589d3b62665fb01b96.jpeg" style="height: auto !important; width: auto !important; visibility: visible !important;" data-src="http://p3oerr4g8.bkt.clouddn.com/image/dft-finance/id/6abc7242b5014b589d3b62665fb01b96?imageView2/0/format/jpg/q/75"></p><p><br></p><p>1、
+指定节点连接着最开始的 EOS 区块链系统，并且对系统账户以及余额进行验证，然后开始生成区块。BIOS Boot 
+节点退出后，返回到上线候选池中（在之后公众投票被选举上的超级节点进行 10 轮区块生产之前，BIOS 
+Boot节点将无权参与选举）。一个节点区块链的运行时间：少于 9 秒。一旦 21 个指定节点都已经上线，并且开始运行 EOS 
+网络，那么后面参与进来的人就可以相互连接了。</p><p>2、「上线小队」中的剩余成员可以连接 EOS 区块链，并将自己置于超级节点候选人的位置上。</p><p>3、EOS Token&nbsp;持币人也可以接入 EOS 区块链，并且用代币来换选票，用选票来进行超级节点的投票。</p><p>3、
+指定节点的职责只有一个：组织选举。正如 BIOS 启动的超级节点一样，他们是（暂时）无法参选的。一旦 21 
+个超级节点选举产生，之前的指定节点就自动被替换下岗了。这次选举要求这 21 个超级节点成为一个单独小组，替换之前的指定节点、直到完全接手 EOS
+ 网络的运行，21 个当选超级节点将进行几轮的区块生产来组织整个 EOS 主网，而「上线小队」中剩余的超级节点候选者也将接入 EOS 
+主网，他们同样也可以参与 EOS 主网运行。（指定节点和 BIOS Boot 节点，在 21 位当选超级节点成功的进行 10 
+轮区块生产之前，都是无权参与超级节点竞选。）</p><p><br></p><p><img class="" src="EOS%E5%88%9B%E4%B8%96%E8%8A%82%E7%82%B9%E9%80%89%E4%B8%BE%E6%B5%81%E7%A8%8B_files/c28ef5a3ba464a86998377a231d93101.jpeg" style="height: auto !important; width: auto !important; visibility: visible !important;" data-src="http://p3oerr4g8.bkt.clouddn.com/image/dft-finance/id/c28ef5a3ba464a86998377a231d93101?imageView2/0/format/jpg/q/75"></p><p><br></p><p>已当选的超级节点开始对主网的「普通」交易进行处理，并为接下来无穷无尽、每轮一次的超级节点选举做好相应的准备工作。</p><p>在 10 轮的区块生产之后，当选超级节点可以被之前的指定节点或者之前的 BIOS Boot 节点所取代，也或许是被新的竞争上位者所取代。</p><p>在接下来的几个小时，或者几天时间内，当选民们开始能够连到区块链上，并投出初始投票时，一些人就有可能被顶替掉了。</p><p><br></p><p><span style="color: rgb(0, 112, 192); font-size: 20px;"><strong>阶段4：#0宪法替换</strong></span></p><p><br></p><p><img class="" src="EOS%E5%88%9B%E4%B8%96%E8%8A%82%E7%82%B9%E9%80%89%E4%B8%BE%E6%B5%81%E7%A8%8B_files/baafb72d389d4d2696f53ee1f7e698ee.jpeg" style="height: auto !important; width: auto !important; visibility: visible !important;" data-src="http://p3oerr4g8.bkt.clouddn.com/image/dft-finance/id/baafb72d389d4d2696f53ee1f7e698ee?imageView2/0/format/jpg/q/75"></p><p><br></p><p>此刻，进入到了一个新的阶段：我们要将默认宪法给置换掉，即替换 #0 宪法。这个过程持续的时间相对较长一些：</p><p>1. 在这个阶段，任何一个权益持有者，在任何时间，都可以提出一份自己的章程草案，作为替换默认章程的备选章程。</p><p>2. 根据软件算法，所有权益持有者都将对每一份章程进行投票表决0# 章程能够升级为 1# 章程，是达到下面的两个条件之一即可：</p><blockquote><p><strong>获得普遍多数人的认同（50% 以上的活跃账户），并且认同状态要持续 15 天时间。</strong><strong>又或者，</strong><strong>获得支持的票数高居榜首状态持续 30 天。</strong></p>
+				     <p><strong><br></strong></p></blockquote><p><img class="" src="EOS%E5%88%9B%E4%B8%96%E8%8A%82%E7%82%B9%E9%80%89%E4%B8%BE%E6%B5%81%E7%A8%8B_files/1ebda0301dc1485eaf6f2c6f8e819c40.jpeg" style="height: auto !important; width: auto !important; visibility: visible !important;" data-src="http://p3oerr4g8.bkt.clouddn.com/image/dft-finance/id/1ebda0301dc1485eaf6f2c6f8e819c40?imageView2/0/format/jpg/q/75"></p><p><br></p><p>在 EOS 主网验证之前，任何 EOS Token 都无法在账户之间进行转移，超级节点生成的区块也不会得到任何奖励。主网验证需要以下两个条件同时出现：<br></p><blockquote>
+				       <p><strong>持有 EOS Token 数量总和大于等于 15% 的账户接入并且进行了一次有效的交易；</strong><strong>并且</strong><strong>#1 宪法被选出</strong>。</p>
+				     </blockquote><p>*上面提到的随机挑选技术将在第 5 阶段公布</p><p><br></p><p><img class="" src="EOS%E5%88%9B%E4%B8%96%E8%8A%82%E7%82%B9%E9%80%89%E4%B8%BE%E6%B5%81%E7%A8%8B_files/d3efd242dffa4781b307826ea851e3f8.jpeg" style="color: rgb(51, 51, 51); height: auto !important; width: auto !important; visibility: visible !important;" data-src="http://p3oerr4g8.bkt.clouddn.com/image/dft-finance/id/d3efd242dffa4781b307826ea851e3f8?imageView2/0/format/jpg/q/75"></p><p><br></p><p>社区提问：指定节点因为他们的技术能力而被选出作为指定节点，负责 EOS 主网的上线工作。随后区块生产将逐渐进化到满足存储、内存、宽带需求的超级节点。<br></p><p>Thomas：上线候选池的任选将经过慎重考虑。他们中的每个人都将有可能会被任命为 BIOS Boot 节点这项极其重要的工作，所有候选池里的技术精英都必须能胜任这份工作。我认为挑选这些人必须进行同业互查、多次演练。（个人的非官方观点）</p><p>社区提问：请公布主网上线和指定节点的技术细节？</p><p>Thomas：关注 BIOS Boot 电报群以及上线流程的 Github。（*译注：该 git 由 EOS Canada 负责维护）</p><p><br></p><p><span style="color: rgb(0, 112, 192); font-size: 20px;"><strong>我们发现了流程中潜在的一些漏洞</strong></span><br></p><p><br></p><p>因为这是一份官方提供的仅供参考的流程，在我撰写这篇文章的时候还发现了很多值得注意的内容和问题：</p><p><strong>1、</strong>EOS<br> #1宪法可能因为无法选出而持续锁仓，任何更好的宪法草案都将替代排名最高的宪法草案，最坏的情况是遇到名次持续变化，得票第一的草案在第 14 <br>天被第二名超越，或者是连续的票第一的草案第 29 天被超越等，这将导致新草案的计时器重置，EOS Token 持币者的锁仓时间更长。</p><p><strong>2、</strong>因为担心锁仓时间太长无法交易带来的价值流失，Token 持有者可能会为了短期利益同意宪法中一些不合理的条款。</p><p>按照目前的投票规则，ESO Token 的持有者投完超级节点的选票之后，还需要去投 EOS#1 宪法，宪法将规定未来 EOS 生态的走向。</p><p>如果这种情况发生，那么 EOS#1 宪法的投票又将陷入和 EOS 超级节点选举一样的窘境。</p><p>如果 EOS 生态真的被 EOS 大户控制，那很有可能不仅抢节点，还要改宪法，称王？</p><p><strong>3、</strong>在 EOS BIOS Boot 上线技术群里，绝大部分都是外国人，只有一两个中国人的身影，因为这是真正的技术群，有钱、有势但是没技术是无法参与讨论的。</p><p>上面还提到，EOS BIOS Boot 的代码是由 EOS Canada 维护的，也能看出 BlockOne 和国外 EOS 开发者的亲密关系。</p><p>所以上线小队里入选的人，很大概率都是外国人，而这份参与主网上线的殊荣，中国团队已经无缘。</p><p>当然，这些也可能是我们想太多，BlockOne 或许会在之后的日子里公布更多技术细节来预防这类问题的出现，但就目前来看，确实有这些潜在的 bug。</p></section></div>
+				 
+			</div>
+		    
+			
+	    </div>
+		
+   </div>
+   
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+</body></html>

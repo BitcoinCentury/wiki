@@ -1,0 +1,30 @@
+cleos set contract eosio eosio.bios
+cleos
+cleos --wallet-host 192.168.31.84 set contract eosio eosio.bios
+cleos wallet create
+cleos --wallet-host 192.168.31.84 --wallet-port 8888 wallet create
+cleos --wallet-host 192.168.31.84 --wallet-port  wallet create
+cleos --wallet-host 192.168.31.84 wallet create
+cleos --wallet-host 192.168.31.84 set contract eosio eosio.bios
+cleos -H 192.168.31.84 set contract eosio eosio.bios
+cleos set contract eosio eosio.bios
+cleos -H 192.168.31.84 set contract eosio eosio.bios
+cleos 
+cleos -H 192.168.31.84 get info
+cleos -H 192.168.31.84 create key
+cleos -H 192.168.31.84 create key
+cleos -H 192.168.31.84 wallet import 5HtojPMStDia1pkW8uWcdFV3KdSaVWfnVF6Fsd78HzUXMx26fth
+cleos  wallet import 5HtojPMStDia1pkW8uWcdFV3KdSaVWfnVF6Fsd78HzUXMx26fth
+cleos  wallet create
+cleos create key
+cleos set contract eosio eosio.bios
+cleos  wallet import 5K6u8Uu6QE3ZjxDHtUVgSphA6dmJDyYSKB4sxG4xiSLvRc5Ck3Z
+cleos create key
+cleos create account eosio ruitoken EOS8htgZpAVjwHyZzfAZxJ12BUqryZuMwgKB3jSCLaHJFEU3LGM52 EOS7K1EdWqK2sogvia4kBYcvXW1aRvgxqZ1msGSnsZH6ZkWEZnfso
+cleos -H 192.168.31.84 create account eosio ruitoken EOS8htgZpAVjwHyZzfAZxJ12BUqryZuMwgKB3jSCLaHJFEU3LGM52 EOS7K1EdWqK2sogvia4kBYcvXW1aRvgxqZ1msGSnsZH6ZkWEZnfso
+cleos -H 192.168.31.84 push action eosio setprods "{ \"version\": 1, \"producers\": [{\"producer_name\": \"ruitoken\",\"block_signing_key\": \"EOS8htgZpAVjwHyZzfAZxJ12BUqryZuMwgKB3jSCLaHJFEU3LGM52\"}]}" -p eosio@active
+cleos -H 192.168.31.84 get code ruitoken
+cleos -H 192.168.31.84 push action eosio setprods "{ \"version\": 1, \"producers\": [{\"producer_name\": \"ruitoken\",\"block_signing_key\": \"EOS8htgZpAVjwHyZzfAZxJ12BUqryZuMwgKB3jSCLaHJFEU3LGM52\"}]}" -p ruitoken@active
+cleos -H 192.168.31.84 push action ruitoken setprods "{ \"version\": 1, \"producers\": [{\"producer_name\": \"ruitoken\",\"block_signing_key\": \"EOS8htgZpAVjwHyZzfAZxJ12BUqryZuMwgKB3jSCLaHJFEU3LGM52\"}]}" -p ruitoken@active
+cleos -H 192.168.31.84 push action ruitoken setprods "{ \"version\": 1, \"producers\": [{\"producer_name\": \"ruitoken\",\"block_signing_key\": \"EOS8htgZpAVjwHyZzfAZxJ12BUqryZuMwgKB3jSCLaHJFEU3LGM52\"}]}" -p eosio@active
+cleos -H 192.168.31.84 get code ruitoken

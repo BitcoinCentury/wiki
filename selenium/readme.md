@@ -10,8 +10,10 @@ options = webdriver.ChromeOptions()
 options.add_argument('--user-data-dir=/tmp/drive')
 ```
 
-> google-chrome  -h
-       --user-data-dir=DIR
-              Specifies the directory that user data (your "profile") is kept in.  Defaults to  $HOME/.config/google-chrome  .   Separate
-              instances  of  Google  Chrome  must use separate user data directories; repeated invocations of google-chrome will reuse an
-              existing process for a given user data directory.
+```
+google-chrome  -h
+  --user-data-dir=DIR
+    Specifies the directory that user data (your "profile") is kept in.  Defaults to  $HOME/.config/google-chrome.  
+    Separate instances  of  Google  Chrome  must use separate user data directories; repeated invocations of
+    google-chrome will reuse an existing process for a given user data directory.
+```

@@ -11,9 +11,9 @@
 
 ##### 获取汇率
 
-https://openexchangerates.org/api/latest.json?app_id=app_id=<appid>
+`https://openexchangerates.org/api/latest.json?app_id=app_id=<appid>`
 
-https://openexchangerates.org/api/latest.json?symbols=cny&app_id=<appid>
+`https://openexchangerates.org/api/latest.json?symbols=cny&app_id=<appid>`
 
 https://currencylayer.com/
 
